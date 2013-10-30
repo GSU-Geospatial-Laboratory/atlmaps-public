@@ -1,0 +1,19 @@
+accordion-heading
+	| Layers <i class="icon-chevron-right pull-right", ng-show="!$parent.layersInfo"> </i> <i class="icon-chevron-down pull-right", ng-show="$parent.layersInfo"> </i>
+div(ng-repeat='layer in map.layers')
+	button.close(type='button', aria-hidden='true', ng-click='removeLayer(layer, $index)', ng-show='$parent.addLayersInfo != null').pull-right &times;
+	p <i ng-class='mapTypeIcon(layer.type)'> </i><strong>{{layer.name | titleCase}}</strong>
+	p {{layer.description}}
+	div.btn-group
+		button.btn.btn-small(ng-model='layer.status', btn-radio='true', ng-change='toggleLayer(layer)') On
+		button.btn.btn-small(ng-model='layer.status', btn-radio='false', ng-change='toggleLayer(layer)') Off
+	|  &nbsp;
+	p
+	div(ng-show='layer.type == "wms" || layer.type == "planningatlanta" || layer.type == "esri-demographics"', slider).noUiSlider 
+	div(ng-show='layer.type == "wms" || layer.type == "planningatlanta" || layer.type == "esri-demographics"').pull-right {{layer.opacity}} %
+	//- span(ng-show='layer.type == "wms" || layer.type == "planningatlanta" || layer.type == "esri-demographics"')
+		div(slider, class="slider", min="0", max="100", step="10", ng-model='layer.opacity') <span></span><knob class='icon-adjust icon-large'></knob></div><span class='pull-right'>{{layer.opacity}} %</span>
+	p &nbsp;
+	div(legend, layer="layer")
+
+	hr	

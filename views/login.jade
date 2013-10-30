@@ -1,0 +1,17 @@
+extends layout
+
+block meta
+	title ATLmaps | Login to ATLmaps
+	meta(name='description', content='Login to ATLmaps')
+
+block head
+
+block body
+	div.container-fluid(ng-controller='LoginCtrl')
+		form(name='loginform', action='/login', method='post').form-signin
+			h3 Login to ATLmaps
+			input(type='text', name='username', placeholder='Username').input-block-level
+			input(type='password', name='password', placeholder='Password').input-block-level
+			input.btn(type='submit') Login
+			p
+				small.muted Need a username? <a href='/register'>Register here.</a>

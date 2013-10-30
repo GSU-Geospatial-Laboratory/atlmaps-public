@@ -1,0 +1,3 @@
+[submodule "sub_modules/esri-leaflet"]
+	path = sub_modules/esri-leaflet
+	url = https://github.com/Esri/esri-leaflet.git

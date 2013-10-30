@@ -1,0 +1,53 @@
+extends layout
+
+block meta
+	title ATLmaps | View ATLmaps
+	meta(name='description', content='View the gallery of ATLmaps')
+
+block body
+	div.container-fluid(ng-controller='MapHomeCtrl')
+		h2 Featured ATLmaps
+		div.row-fluid
+			ul.thumbnails(ng-repeat='mapSet in maps')
+				li.span4.layout-view(ng-repeat='map in mapSet | filter:{featured: true}')
+					div.thumbnail
+						a(data-toggle='lightbox', href='#map_{{map._id}}_lightbox')
+							img(ng-src='/images/thumbs/{{map._id}}.jpg')
+						div
+							a(href='/maps/{{map.slug}}')
+								h3.featured-map {{map.name}} &nbsp;
+							span.badge.badge-info Featured
+						p <strong>By: </strong> {{map.user}}
+						small {{map.description|limitChar:100}}
+						p <strong>Keywords:</strong> <span class="muted">{{map.keywords}}</span>
+					div(id="map_{{map._id}}_lightbox",class="lightbox hide fade", tabindex="-1", role="dialog", aria-hidden="true", style="position: fixed; width: 621px; height: 419px; top: 0px; left: 50%; margin-left: -310.5px; display: none;")
+						div(class="lightbox-content")
+							img(ng-src='/images/thumbs/{{map._id}}.jpg')
+							div(class="lightbox-caption")
+								a(href='/maps/{{map.slug}}').caption-link
+									h3 View {{map.name}}
+						a(href='/maps/{{map.slug}}')
+							h3 {{map.name}}
+		h2 User created ATLmaps
+		div.row-fluid
+			ul.thumbnails(ng-repeat='mapSet in maps')
+				li.span4.layout-view(ng-repeat='map in mapSet | filter:{featured: false}')
+					div.thumbnail
+						a(data-toggle='lightbox', href='#map_{{map._id}}_lightbox')
+							img(ng-src='/images/thumbs/{{map._id}}.jpg')
+						a(href='/maps/{{map.slug}}')
+							h3 {{map.name}}
+						p <strong>By: </strong> {{map.user}}
+						small {{map.description|limitChar:100}}
+						p <strong>Keywords:</strong> <span class="muted">{{map.keywords}}</span>
+					div(id="map_{{map._id}}_lightbox",class="lightbox hide fade", tabindex="-1", role="dialog", aria-hidden="true", style="position: fixed; width: 621px; height: 419px; top: 0px; left: 50%; margin-left: -310.5px; display: none;")
+						div(class="lightbox-content")
+							img(ng-src='/images/thumbs/{{map._id}}.jpg')
+							div(class="lightbox-caption")
+								a(href='/maps/{{map.slug}}').caption-link
+									h3 View {{map.name}}
+						a(href='/maps/{{map.slug}}')
+							h3 {{map.name}}
+						
+		div.row-fluid
+			div.span3

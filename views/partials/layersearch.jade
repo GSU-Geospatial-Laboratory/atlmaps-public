@@ -1,0 +1,17 @@
+div#layerSearchModal.modal.hide.fade
+	div.modal-header
+		button(type="button", class="close", data-dismiss="modal", aria-hidden="true")&times;
+		h3 Search all layers
+			
+	div.modal-body
+		p
+			input.search-query(type='text', ng-model='layerFilter', placeholder='Enter search terms...')
+			span.pull-right Results : {{(allLayers | filter:layerFilter).length}}
+		ul.unstyled
+			li(ng-repeat='layer in allLayers | filter:layerFilter')
+				p
+					strong <i ng-class='mapTypeIcon(layer.type)'> </i>
+						a(href='#', ng-click='map.layers.push(layer)'){{layer.name}}
+					<br> <strong>Year : </strong>{{layer.date | date:'yyyy'}}
+					<br> <strong>Description : </strong>{{layer.description}}
+					<br> <strong>Keywords : </strong> {{layer.keywords}}

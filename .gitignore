@@ -1,0 +1,12 @@
+*.DS_STORE
+*.sublime-project
+*.sublime-workspace
+bower_components
+components
+*.log
+node_modules*
+dist
+graphics*
+/public/images/thumbs*
+seed/createlayers.js
+seed/createdatasstores.js

@@ -1,0 +1,91 @@
+!!!
+html(ng-app="atlMaps")
+	head
+		meta(charset='utf8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+		block meta
+		meta(name="google-site-verification", content="B8KEvy9eW6KAxV0JSFH4cTOrmDLZMnlVbE9z4mwXUg4")
+		link(rel='stylesheet', href='/css/bootstrap-no-icons.css')
+		link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css')
+		link(rel='stylesheet', href='/bootstrap-lightbox/docs/assets/css/bootstrap-lightbox.min.css')
+		link(rel='stylesheet', href='/css/app.css')
+		link(rel='stylesheet', href='/nouislider/nouislider.fox.css')
+		//- link(rel='stylesheet', href='/nouislider/nouislider.space.css')
+
+		block head
+		
+
+	body(ng-cloak).ng-cloak
+		header
+			div.navbar.navbar-fixed-top.navbar-inverse
+				div.navbar-inner
+					div.container
+						a(href='/#').brand ATLmaps (beta)
+						div.nav
+							ul.nav
+								- if (id == 'maps')
+									li.dropdown.active
+										a.dropdown-toggle(href='#', data-toggle='dropdown') Maps &nbsp;
+											b.caret
+										ul.dropdown-menu
+											li
+												a(href='/maps') View ATLmaps
+											li
+												a(href='/maps/create') Create an ATLmap
+								- else
+									li.dropdown	
+										a.dropdown-toggle(href='#', data-toggle='dropdown') Maps &nbsp;
+											b.caret
+										ul.dropdown-menu
+											li
+												a(href='/maps') View ATLmaps
+											li
+												a(href='/maps/create') Create an ATLmap
+								li
+									a(href='https://github.com/GSU-Geospatial-Laboratory/atlmaps-public/issues') Request a feature / Report a bug
+
+						div.navbar-text.pull-right
+							if (typeof(user)) == 'undefined' || user.name == 'Guest'
+								a(href='/login').navbar-link Login
+								| &nbsp; | &nbsp;
+								a(href='/register').navbar-link Register
+							else 
+								| &nbsp; #{user.username}
+								| &nbsp; | &nbsp; 
+								a(href='/logout').navbar-link Logout
+		block body
+
+		block scripts
+
+		script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+		script(src='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js')
+		script(src='http://code.angularjs.org/1.0.7/angular.min.js')
+		script(src='http://code.angularjs.org/1.0.7/angular-resource.min.js')
+		script(src='/angular-bootstrap/ui-bootstrap-tpls.min.js')
+		script(src='http://code.angularjs.org/1.0.7/angular-sanitize.min.js')
+		script(src='/js/app/app.js')
+		script(src='/js/app/controllers.js')
+		script(src='/js/app/directives.js')
+		script(src='/js/app/filters.js')
+		script(src='/js/app/services.js')
+		script(src='/underscore/underscore-min.js')
+		script(src='/bootstrap-lightbox/docs/assets/js/bootstrap-lightbox.min.js')
+		script(src='/nouislider/jquery.nouislider.min.js')
+		script.
+			var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', 'UA-8209114-25']);
+				_gaq.push(['_trackPageview']);
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
+
+		block endscripts
+
+		
+
+
+		//script(src='/js/dist/atlmaps.min.js')
+		//script(src='http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js')

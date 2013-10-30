@@ -1,0 +1,79 @@
+extends layout
+
+block meta 
+	title ATLmaps
+	meta(name='description', content='ATLmaps - Mapping Atlanta in new ways, telling the stories of our city')
+
+
+block head
+	style.
+		body{
+			padding-top:40px;
+		}
+		@media max-width: 979px {
+			body{
+				padding-top:0px;
+			}
+		}
+
+block body
+	div.jumbotron.masthead
+		div.container
+			h1 ATLmaps
+			p mapping the stories of your city	
+			p
+				a.btn.btn-primary(href='/maps') View ATLmaps
+				| &nbsp; | &nbsp;
+				a.btn.btn-success(href='/maps/create') Build an ATLmap
+			a(href='http://www.twitter.com/atlmaps') <i class='icon-twitter'> </i> @ATLmaps
+
+	div.container-fluid
+		hr
+		div.row-fluid
+			div.span4.marketing.center
+				h1 <i class='icon-globe icon-2x'> </i> <i class='icon-plus icon-large'> </i> <i class='icon-bar-chart icon-2x'> </i>
+				h2 Data & Maps
+				p.lead ATLmaps combines data and maps in new ways for visualization and discovery
+			div.span4.marketing.center
+				h1 <i class='icon-book icon-2x'> </i>
+				h2 Tell a Story
+				p.lead Built by a diverse, interdisciplinary team - ATLmaps extends mapping to new fields in innovative ways.
+			div.span4.marketing.center
+				h1 <i class='icon-search icon-2x'> </i>
+				h2 (Re)Discover a City
+				p.lead Learn and collaborate about Historic Atlanta, or build something new
+		hr
+		div.row-fluid
+			div.span4.marketing
+				h3.center Team Members
+				ul.unstyled
+					li Brennan Collins
+					li Tim Hawthorne
+					li Joe Hurley
+					li Ben Miller
+					li Jack Reed
+			div.span4.marketing
+				h3.center Collaborators
+				ul.unstyled
+					li Tim Crimmins
+					li Marni Davis
+					li Cheryl Johnson
+					li Kathryn Mcclymond
+					li Hannah Palmer
+					li Isaac Weiner
+			div.span4.marketing
+				h3.center Student Support
+				ul.unstyled
+					li Drew Ayers
+					li Amber Boll
+					li Paulita Bennett-Martin
+					li Justin Horton
+					li Artis LangBruttig
+					li Eric Main
+					li Ian Peters
+
+	footer
+		div.container-fluid
+			p The ATLmaps project could not be possible without the incredible support by the Georgia State University Cities Initiative
+
+		

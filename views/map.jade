@@ -1,0 +1,47 @@
+extends layout
+
+block meta
+	if typeof(mapdoc.description) != 'undefined'
+		description = mapdoc.description
+	else
+		description = ''
+	title ATLmaps | #{mapdoc.name}
+	meta(name='description', content='#{description}')
+
+block scripts
+	//- script(src='http://maps.google.com/maps/api/js?v=3.exp&sensor=false')
+	script(src='http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js')
+	//- script(src='/js/leaflet-providers.js')
+	//- script(src='/js/google-layer.js')
+	script(src='/js/bing-layer.js')
+	script(src='/js/esri-leaflet.min.js')
+	script.
+		var map;
+		map = L.map('map');
+
+block endscripts
+	
+
+
+
+block head
+	link(rel='stylesheet', href='http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css')
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+	<![endif]-->
+
+block body
+	div(ng-controller='MapViewCtrl', ng-init='init("#{name}", #{JSON.stringify(mapdoc)})')
+		div#mainView(ng-style='{height:pageHeight()}')
+			div#sidebar(ng-style='{height:pageHeight()}')
+				accordion(close-others="true")
+					accordion-group(heading='Map Information', is-open='$parent.mapInfoOpen')
+						include partials/map-ui/map-info.jade
+					accordion-group(heading='Layer Information', is-open='$parent.popupInfo', ng-show='$parent.map.hasClickableContent')
+						include partials/map-ui/popup-info.jade
+					accordion-group(is-open='$parent.layersInfo')
+						include partials/map-ui/layers.jade
+
+			div#sidebarShadow
+			div#map(ng-style="{height:pageHeight(), width:mapWidth()}", set-default-map)
+

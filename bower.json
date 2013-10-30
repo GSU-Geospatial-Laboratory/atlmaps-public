@@ -1,0 +1,17 @@
+{
+  "name": "atlmaps",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "~0.5.0",
+    "angular": "~1.0.8",
+    "bootstrap": "~3.0.0",
+    "bootstrap-lightbox": "~0.6.1",
+    "nouislider": "~3.2.1",
+    "underscore": "~1.5.1"
+  }
+}

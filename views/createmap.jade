@@ -1,0 +1,86 @@
+extends layout
+
+block meta
+	title ATLmaps | Create an ATLmap
+	meta(name='description', content='Create an ATLmap')
+
+block scripts
+	//- script(src='http://maps.google.com/maps/api/js?v=3.exp&sensor=false')
+	script(src='http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js')
+	//- script(src='/js/leaflet-providers.js')
+	//- script(src='/js/google-layer.js')
+	script(src='/js/bing-layer.js')
+	script(src='/js/esri-leaflet.min.js')
+
+	script.
+		var map;
+		map = L.map('map');
+		window.user = '#{user.name}'
+
+block endscripts
+
+
+
+
+block head
+	link(rel='stylesheet', href='http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css')
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+	<![endif]-->
+
+block body
+	div(ng-controller='MapCreateCtrl', ng-init='init()')
+		div#mainView.container(ng-style='{height:pageHeight()}')
+			div#sidebar.span4(ng-style='{height:pageHeight()}')
+				div.alert.alert-error 
+					button(type="button", class="close", data-dismiss="alert")&times;
+					| Note any map added will be deleted, this project is still in testing
+				accordion(close-others="true")
+					accordion-group(heading='Map Information', is-open='$parent.mapInfoOpen')
+						accordion-heading
+							| Edit map information <i class="icon-chevron-right pull-right", ng-show="!$parent.mapInfo"> </i> <i class="icon-chevron-down pull-right", ng-show="$parent.mapInfo"> </i>
+						div
+							form(name='map')
+								h5 Enter information about your map project
+								div.control-group
+									label.control-label(for='mapName') <strong>Project Name: </strong>
+									div.controls
+										input(type='text', id='mapName', ng-model='$parent.map.name', required)
+								div.control-group
+									label.control-label(for='mapUser') <strong>By: </strong> #{user.name}
+								div.control-group
+									label.control-label(for='mapDesc') <strong>Description: </strong>
+									div.controls
+										textarea(id='mapDesc', rows='4', ng-model='$parent.map.description', required)
+								div.control-group
+									label.control-label(for='mapKey') <strong>Keywords: </strong> <span class='help-inline'>Separated by commas</span>
+									div.controls
+										input(type='text', id='mapKey', ng-model='$parent.map.keywords', required) 
+								//- button.btn.btn-primary(ng-click='save()') Save
+
+					accordion-group(heading='Add a layer', is-open='$parent.addLayersInfo')
+						accordion-heading
+							| Add a layer <i class="icon-chevron-right pull-right", ng-show="!$parent.addLayersInfo"> </i> <i class="icon-chevron-down pull-right", ng-show="$parent.addLayersInfo"> </i>
+						div
+							h4 Add layers to the map
+							div
+								p
+									a(href='#', ng-click='openLayerSearch()') <i class='icon-search'> </i> Search for map layers
+								div 
+									h5 Add map layers by collection
+									p(ng-repeat='collection in collections')
+										a(href='#', ng-click='openLayerCollection(collection)') {{collection.name}}
+	
+					accordion-group(heading='Layer Information', is-open='$parent.popupInfo', ng-show='$parent.map.hasClickableContent')
+						include partials/map-ui/popup-info.jade
+					accordion-group(is-open='$parent.layersInfo')
+						include partials/map-ui/layers.jade
+				hr
+				div#saveMap
+					button.btn.btn-primary(ng-click='saveMap()', type='submit', ng-disabled='isDisabled()') Save Map
+					
+			div#sidebarShadow
+			div#map(ng-style='{height:pageHeight(), width:mapWidth()}', set-default-map)
+
+		include partials/collectionlayers
+		include partials/layersearch

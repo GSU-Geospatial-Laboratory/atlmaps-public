@@ -1,0 +1,27 @@
+extends layout
+
+block meta
+	title ATLmaps | Register
+	meta(name='description', content='Register for ATLmaps')
+
+block head
+
+
+block body
+	div.container(ng-controller='LoginCtrl', ng-cloak).ng-cloak
+		form(name='registerForm', action='/register', method='post').form-signin
+			h3 Register for ATLmaps
+			div.alert.alert-error 
+				button(type="button", class="close", data-dismiss="alert")&times;
+				| ATLmaps is currently in a testing phase.  For access please contact info@atlmaps.com
+			input(type='text', name='name', placeholder='Your Name', ng-model='name', required).input-block-level
+			input(type='text', name='email', placeholder='Email', ng-model='email', required).input-block-level
+			input(type='text', name='username', placeholder='Username (must be unique)', ng-model='username', ng-pattern="/^[a-zA-Z0-9]{4,10}$/", required).input-block-level
+			
+			input(type='password', name='password', placeholder='Password (minimum length 6 characters)', ng-model='password', ng-minlength='6', required).input-block-level
+			input(type='password', name='password2', placeholder='Verify Password', ng-model='password2', ng-minlength='6', required, same-as='password').input-block-level
+			//- input.btn(type='submit', value='Register', ng-disabled='!registerForm.$valid')
+			span.help-inline(ng-show='registerForm.$valid') <i class='icon-ok'></i>
+			p
+				small.muted Already registered? <a href='/login'>Login here.</a>
+			
