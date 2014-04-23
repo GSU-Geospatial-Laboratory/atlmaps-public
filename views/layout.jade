@@ -13,7 +13,7 @@ html(ng-app="atlMaps")
 		//- link(rel='stylesheet', href='/nouislider/nouislider.space.css')
 
 		block head
-		
+
 
 	body(ng-cloak).ng-cloak
 		header
@@ -33,7 +33,7 @@ html(ng-app="atlMaps")
 											li
 												a(href='/maps/create') Create an ATLmap
 								- else
-									li.dropdown	
+									li.dropdown
 										a.dropdown-toggle(href='#', data-toggle='dropdown') Maps &nbsp;
 											b.caret
 										ul.dropdown-menu
@@ -49,9 +49,9 @@ html(ng-app="atlMaps")
 								a(href='/login').navbar-link Login
 								| &nbsp; | &nbsp;
 								a(href='/register').navbar-link Register
-							else 
+							else
 								| &nbsp; #{user.username}
-								| &nbsp; | &nbsp; 
+								| &nbsp; | &nbsp;
 								a(href='/logout').navbar-link Logout
 		block body
 
@@ -61,16 +61,16 @@ html(ng-app="atlMaps")
 		script(src='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js')
 		script(src='http://code.angularjs.org/1.0.7/angular.min.js')
 		script(src='http://code.angularjs.org/1.0.7/angular-resource.min.js')
-		script(src='/angular-bootstrap/ui-bootstrap-tpls.min.js')
+		script(src='//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js')
 		script(src='http://code.angularjs.org/1.0.7/angular-sanitize.min.js')
 		script(src='/js/app/app.js')
 		script(src='/js/app/controllers.js')
 		script(src='/js/app/directives.js')
 		script(src='/js/app/filters.js')
 		script(src='/js/app/services.js')
-		script(src='/underscore/underscore-min.js')
-		script(src='/bootstrap-lightbox/docs/assets/js/bootstrap-lightbox.min.js')
-		script(src='/nouislider/jquery.nouislider.min.js')
+		script(src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js')
+		script(src='//cdnjs.cloudflare.com/ajax/libs/bootstrap-lightbox/0.6.1/bootstrap-lightbox.js')
+		script(src='//cdnjs.cloudflare.com/ajax/libs/noUiSlider/4.2.2/jquery.nouislider.min.js')
 		script.
 			var _gaq = _gaq || [];
 				_gaq.push(['_setAccount', 'UA-8209114-25']);
@@ -83,9 +83,3 @@ html(ng-app="atlMaps")
 
 
 		block endscripts
-
-		
-
-
-		//script(src='/js/dist/atlmaps.min.js')
-		//script(src='http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js')
